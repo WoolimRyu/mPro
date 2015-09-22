@@ -3,7 +3,8 @@ var router = express.Router();
 var request = require('request');
 var async = require('async');
 
-var watchaValue = 'CuWvclqwBeNM';
+//var watchaValue = 'CuWvclqwBeNM';
+var watchaValue;
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -12,6 +13,13 @@ router.get('/', function(req, res) {
 
 router.post('/login', function(req, res) {
 	console.log(req.body.user_id, req.body.user_pw);
+});
+
+router.post('/token', function(req, res) {
+	//console.log(req.body.token);
+	watchaValue = String(req.body.token);
+
+	watcha(); save2();
 });
 
 router.get('/my_product', function(req, res) {
@@ -411,7 +419,7 @@ var watcha = function () {
 	})
 };
 
-watcha(); save2();
+//watcha(); save2();
 
 //save1();
 //save2();
