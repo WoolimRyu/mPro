@@ -1,0 +1,39 @@
+@import url(http://fonts.googleapis.com/earlyaccess/jejugothic.css);
+
+.login {
+  cursor: pointer;
+  float: right;
+  margin-right: 170px;
+  margin-top: 23px;
+  z-index: 1;
+}
+
+.button {
+  text-align: center;
+  font-family: 'Jeju Gothic';
+  width:90px; height:36px;
+  border-radius: 8px;
+  text-decoration: none;
+  background: #FF4500;
+  color: #fff;
+  font-size: 24px;
+  display: inline-block;
+  position: absolute;
+  -moz-transition: all 0.25s ease-in-out;
+  -o-transition: all 0.25s ease-in-out;
+  -webkit-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+}
+.button:hover {
+  background: #f45057;
+  text-shadow: 0 2px 2px #de0e18;
+  -moz-box-shadow: 0 3px 0 #960a10, 0 4px 0 #960a10;
+  -webkit-box-shadow: 0 3px 0 #960a10, 0 4px 0 #960a10;
+  box-shadow: 0 3px 0 #960a10, 0 4px 0 #960a10;
+}
+.button:active {
+  transform: translatey(3px);
+  -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3);
+}

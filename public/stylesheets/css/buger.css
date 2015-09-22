@@ -1,0 +1,148 @@
+.menu {
+  position: fixed;
+  width: 200px;
+  height: 200px;
+  top: 79%;
+  left: calc( 96% - 95px);
+  border-radius: 50%;
+}
+.menu-button {
+  position: absolute;
+  top: calc( 50% - 30px);
+  left: calc( 50% - 30px);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: rgba(255, 165, 0, .7);
+  cursor: pointer;
+  transition: transform .3s;
+  z-index: 1;
+}
+
+.menu-line {
+  position: absolute;
+  display: block;
+  width: 35px;
+  height: 6px;
+  top: 27px;
+  left: 12px;
+  border-radius: 3px;
+/*  background-color: rgba(255, 255, 255, .7);*/
+  background-color: rgba(1, 1, 1, .6);
+  transition: scale .3s, rotate .3s;
+}
+.menu-button:hover {
+  transform: scale(1.2);
+}
+  .menu-line:before, .menu-line:after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 35px;
+    height: 6px;
+    border-radius: 3px;
+    background-color: inherit;
+  }
+  .menu-line:before {
+    top: -11px;
+  }
+  .menu-line:after {
+    top: 11px;
+  }
+.activeB {
+  display: block;
+  position: absolute;
+  top: 27px;
+  left: 13px;
+  width: 34px;
+  height: 6px;
+  border-radius: 3px;
+  background-color: rgba(255, 255, 255, 1);
+  transform: rotate(45deg);
+} .activeB:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 34px;
+  height: 6px;
+  border-radius: 3px;
+  background-color: inherit;
+  transform: rotate(90deg);
+}
+.rotate {
+  transform: rotate(360deg);
+}
+ /*---- MENU ITEM BACKGROUND ----*/
+.menu-item {
+  position: absolute;
+  display: block;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgba(1, 1, 1, .6);
+  opacity: 0;
+  top: calc(50% - 25px);
+  left: calc(50% - 25px);
+  cursor: pointer;
+  transition: all .3s;
+} /* --- HOVER EFFECT --- */
+  .menu-item:hover {
+    background-color: rgba(255, 255, 255, .8);
+  }
+  .menu-item:hover .donut, .menu-item:hover .square {
+    border-color: rgba(1, 1, 1, .7);
+  }
+  .menu-item:hover .triangle {
+    border-color: transparent transparent rgba(1, 1, 1, .7) transparent; 
+  }
+  .menu-item:hover .vk, .menu-item:hover .twitter, .menu-item:hover .facebook, .menu-item:hover .google {
+    color: rgba(1, 1, 1, .7);
+  }
+  .menu-item:hover .cross, .menu-item:hover .cross:after {
+    background-color: rgba(1, 1, 1, .7);
+  }
+ /* --- ICONS --- */
+.first {
+  left: calc(50% - 25px);
+  top: 0;
+  opacity: 1;
+  transform: rotate(360deg);
+}
+.second {
+  left: 0;
+  top: calc(50% - 25px);
+  opacity: 1;
+  transform: rotate(360deg);
+}
+  .cross {
+     display: block;
+     position: absolute;
+     top: 23px;
+     left: 8px;
+     width: 34px;
+     height: 5px;
+     border-radius: 3px;
+     background-color: rgba(255, 255, 255, .7);
+     transform: rotate(45deg);
+  } .cross:after {
+     content: "";
+     display: block;
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 34px;
+     height: 5px;
+     border-radius: 3px;
+     background-color: rgba(255, 255, 255, .7);
+     transform: rotate(90deg);
+  }
+
+ .facebook {
+   color: rgba(255, 255, 255, .7);
+   line-height: 50px;
+   font-size: 40px;
+   font-weight: bold;
+   font-family: sans-serif;
+ }

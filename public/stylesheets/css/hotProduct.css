@@ -1,0 +1,31 @@
+.top {
+	background : url(https://d12hfz37g51hrt.cloudfront.net/s/large/mk54ix-6777eda6d6d573455e4e.jpg?1438858016) !important;
+}
+
+#hot-wrapper2 {
+	background-color: #FFFFFF;
+	border-radius: 6px;
+
+	width:96%; 
+	height:320px;
+
+	-webkit-box-shadow: 0 15px 20px #777;
+	-moz-box-shadow: 0 15px 20px #777;
+	box-shadow: 0 3px 8px #777;
+}
+
+#hot-wrapper1 {
+	margin-top:30px;
+}
+
+#hot-wrapper2 img{
+	margin-left : 0px;
+	margin-top : 10px;
+	width:210px;
+	height:300px;
+	border-radius : 10px;
+
+	-webkit-box-shadow: 0 35px 20px #777;
+	-moz-box-shadow: 0 35px 20px #777;
+	box-shadow: 0 2px 10px silver;
+}

@@ -1,0 +1,56 @@
+@import url(http://fonts.googleapis.com/earlyaccess/jejugothic.css);
+
+/* http://www.kingsmanmovie.com/images/store/background.jpg */
+
+body {
+	height:100%;
+	overflow: hidden;
+}
+
+.home-top {
+  height:100%;
+  border : 1px solid black;
+  background : url(http://welivefilm.com/wp-content/uploads/2014/02/Blu-Ray-Tuesday-About-Time-We-Live-Film.jpg) no-repeat;
+  background-size: cover;
+  opacity: 0.85;
+  z-index: -1;   
+}
+
+.home-top nav ul{
+  position:fixed;
+  z-index:1000;
+  width:100%;
+  color:white;
+  list-style:none;
+  -webkit-transition:.5s;
+  -moz-transition:.5s;
+  transition:.5s;
+
+  margin-top:10px;
+}
+.home-top nav ul.active{
+  background-color: #FFFFFF;
+  border-bottom: 1px solid #c8c8c8;
+  /* background:#333; */
+  color:black;
+
+  margin-top:0px;
+}
+.home-top nav ul li{
+  display:inline-block;
+  padding:20px 20px;
+  font-size:16px;
+}
+
+.home-ad {
+	height:100%;
+	font-family: 'Jeju Gothic';
+	text-align: center;
+	width:88%; 
+	border:1px solid rgba(255,255,255,0);
+	margin: 110px auto;
+	height:560px; 
+	background-color:white; 
+	opacity:0.83;
+	border-radius: 6px;
+}
