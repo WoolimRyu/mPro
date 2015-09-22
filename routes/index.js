@@ -3,10 +3,8 @@ var router = express.Router();
 var request = require('request');
 var async = require('async');
 
-//var watchaValue = 'CuWvclqwBeNM';
 var watchaValue;
 
-/* GET home page. */
 router.get('/', function(req, res) {
 	res.render('index', { title: 'Express' });
 });
@@ -16,17 +14,13 @@ router.post('/login', function(req, res) {
 });
 
 router.post('/token', function(req, res) {
-	//console.log(req.body.token);
 	watchaValue = String(req.body.token);
-
 	watcha(); save2();
 });
 
 router.get('/my_product', function(req, res) {
 	console.log(ds);
-
 	res.render('my_product', {products: pros, movies: mov, dvds: ds});
-
 });
 
 router.get('/hot_product', function(req, res) {
@@ -37,11 +31,8 @@ router.get('/wish_list', function(req, res) {
 	res.render('wish_list');
 });
 
-
 var mongoose = require('mongoose');
-
 var db = mongoose.connection;
-
 db.on('error', console.error);
 db.once('open', function() {
 });
@@ -157,33 +148,7 @@ hot5.save(function(err, thor) {
 
 };
 
-var save1 = function () {
-	var thor1 = new Movie({
-		id:'1'
-		, title: '앤트맨'
-		, poster: 'https://d12hfz37g51hrt.cloudfront.net/p/fac5bd74cdd6abdd1a50.jpg?1442697458'
-		, rating: '4.5'
-		, genre:'액션'
-		, date: '2015-09-07T15:32:41+09:00'
-	});
-
-	var thor2 = new Movie({
-		id:'2'
-		, title: '어벤져스'
-		, poster: 'https://d12hfz37g51hrt.cloudfront.net/p/fac5bd74cdd6abdd1a50.jpg?1442697458'
-		, rating: '4.5'
-		, genre:'액션'
-		, date: '2015-09-07T15:32:41+09:00'
-	});
-
-	thor1.save();
-	thor2.save();
-};
-
-
 var play1 = function() {
-	console.log('play1 들어옴.');
-
 	Movie.find(function(err, movies) {
 		movies.forEach(function(movie) {
 			var book_value;
@@ -202,15 +167,9 @@ var play1 = function() {
 			book_url = 'https://apis.daum.net/search/book?apikey=7780d95a1b6b1c3e948478449e0e221c&q='+ unescape(encodeURIComponent(String(book_value))) + 
 			'&output=json';
 
-			request(book_url, function (error, response, body)
-			{
-				if (!error && response.statusCode == 200)
-				{
+			request(book_url, function (error, response, body) {
+				if (!error && response.statusCode == 200) {
 					book_result = JSON.parse(body);
-
-					console.log(movie.title);
-					//console.log(book_result);
-
 					if (book_result.channel.result !== "0") {
 						id = movie.id;
 						author_t = book_result.channel.item[0].author_t;
@@ -220,7 +179,7 @@ var play1 = function() {
 						pub_nm = book_result.channel.item[0].pub_nm;
 						title = book_result.channel.item[0].title;
 
-						if (book_result.channel.item[0].cover_l_url === ""){
+						if (book_result.channel.item[0].cover_l_url === "") {
 							book_img = 'http://www.thefutureorganization.com/wp-content/uploads/2014/03/book-image-crop.jpg';
 						} else {
 							book_img = book_result.channel.item[0].cover_l_url;
@@ -271,34 +230,24 @@ var play1 = function() {
 };
 
 var play2 = function () {
-	console.log('play2 들어옴.');
-
 	Movie.find(function(err, movies) {
 		movies.forEach(function(movie) {
 			var web_value;
 			var web_url;
 			var web_result;
 			var web_link;
-
 			web_value = movie.title + '판매 사이트';
 			web_url = 'https://apis.daum.net/search/web?apikey=7780d95a1b6b1c3e948478449e0e221c&q=' + unescape(encodeURIComponent(String(web_value))) + '&output=json';
 
-			request(web_url, function (error, response, body)
-			{
-				if (!error && response.statusCode == 200) 
-				{
+			request(web_url, function (error, response, body) {
+				if (!error && response.statusCode == 200) {
 					web_result = JSON.parse(body);
 					web_link = web_result.channel.item[0].link;
 
 					Product.findOne({id:movie.id}, function(err, pro){
 						pro.web_link = web_link;
 						pro.save();
-
-						console.log('play2 저장!!')
-						//console.log(pro);
-
 						if (movie === movies[movies.length-1]){
-							console.log('마지막');
 							play3();
 						}
 					});
@@ -310,35 +259,21 @@ var play2 = function () {
 
 
 var play3 = function () {
-
-	console.log('play3 들어옴.');
-
 	Movie.find(function(err, movies) {
 		movies.forEach(function(movie) {
 			var dvd_value = movie.title;
 			var dvd_url = 'https://api.tmsandbox.co.nz/v1/dvd/find.json?search=' + unescape(encodeURIComponent(String(dvd_value)));
 			var dvd_result;
-
 			var dvd_id;
 			var dvd_name;
 			var dvd_year;
-
 			var a = movie.id;
 
-			request(dvd_url, function (error, response, body)
-			{
-				if (!error && response.statusCode == 200) 
-				{
+			request(dvd_url, function (error, response, body) {
+				if (!error && response.statusCode == 200) {
 					dvd_result = JSON.parse(body);
-
 					dvd_id = a;
-
-				if(dvd_result.List[0] !== undefined) 
-				{
-
-				//console.log('dvd result list = ');
-				//console.log(dvd_result.List[0].Name);
-
+				if(dvd_result.List[0] !== undefined) {
 				dvd_name = dvd_result.List[0].Name;
 				dvd_year = dvd_result.List[0].MovieYear;
 
@@ -347,7 +282,6 @@ var play3 = function () {
 					name : dvd_name,
 					year : dvd_year
 				});
-
 				pro.save(function (err) {
 					if (movie == movies[movies.length-1]){
 						console.log('플레이포를 부르겠습니다.');
@@ -355,7 +289,6 @@ var play3 = function () {
 					}
 				});
 				} else {
-
 					dvd_id = a;
 
 					var pro = new Dvd ({
@@ -365,7 +298,6 @@ var play3 = function () {
 					});
 					pro.save(function (err) {
 						if (movie == movies[movies.length-1]){
-							console.log('플레이포를 부르겠습니다.');
 							play4();
 						}
 					});
@@ -377,21 +309,15 @@ var play3 = function () {
 
 }
 
-
 var watcha = function () {
 	var watchaURL = 'https://watcha.net/users/' + String(watchaValue) + '/movies.json?filter%5Bsorting%5D=time&page=1';
-	
 	var watcha_result;
-	request(watchaURL, function (error, response, body)
-	{
-		if (!error && response.statusCode == 200) 
-		{
-			console.log(body);
+	request(watchaURL, function (error, response, body) {
+		if (!error && response.statusCode == 200) {
 			watcha_result = JSON.parse(body);
-
 			var flag = 0;
 			for(var i=0; i<watcha_result.cards.length; i++) {
-				var w_movie = new Movie({
+				var w_movie = new Movie ({
 					id: i
 					, title: watcha_result.cards[i].items[0].item.title
 					, poster: watcha_result.cards[i].items[0].item.poster.original
@@ -405,26 +331,9 @@ var watcha = function () {
 					if(flag == 10) play1();
 				});
 			}
-
-			// console.log(watcha_result.cards.length);
-
-			// console.log(watcha_result.cards[0].items[0].item.title);
-			// console.log(watcha_result.cards[0].items[0].item.poster.original);
-			// console.log(watcha_result.cards[0].items[0].item.year);
-			// console.log(watcha_result.cards[0].items[0].item.main_genre);
-
-			// console.log(watcha_result.cards[0].items[0].item.owner_action.rating);
-			// console.log(watcha_result.cards[0].items[0].item.owner_action.updated_at);
 		}
 	})
 };
-
-//watcha(); save2();
-
-//save1();
-//save2();
-
-//play1();
 
 var hots = new Object;
 var pros = new Object;
@@ -434,32 +343,18 @@ var ds = new Object;
 var play4 = function () {
 	Hot.find(function(err, products) {
 		hots = products;
-		// products.forEach(function(pro) {
-		// 	console.log('this is pro');
-		//console.log(products);
-		// });
 	});
-
 	Product.find().sort({id: 1}).exec(function(err, products) {
 		pros = products;
-		//console.log(pros);
 	});
-
 	Movie.find().sort({id: 1}).exec(function(err, movies) {
 		mov = movies;
-		//console.log(mov);
 	});
-
 	Dvd.find(function(err, dvds) {
 		ds = dvds;
-		//console.log(dvds);
 	});
-
 };
 
 play4();
-
-
 mongoose.connect('mongodb://localhost:27017/mylist_demo');
-
 module.exports = router;
